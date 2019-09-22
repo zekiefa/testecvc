@@ -13,6 +13,14 @@ public class Room {
 
 	private PriceDetail priceDetail;
 
+	public Room() {
+		super();
+		this.roomID = 0;
+		this.categoryName = "";
+		this.totalPrice = BigDecimal.ZERO;
+		this.priceDetail = new PriceDetail();
+	}
+
 	public Integer getRoomID() {
 		return roomID;
 	}

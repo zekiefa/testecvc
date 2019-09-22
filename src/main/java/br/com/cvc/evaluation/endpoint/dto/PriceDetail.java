@@ -9,6 +9,12 @@ public class PriceDetail {
 
 	private BigDecimal pricePerDayChild;
 
+	public PriceDetail() {
+		super();
+		this.pricePerDayAdult = BigDecimal.ZERO;
+		this.pricePerDayChild = BigDecimal.ZERO;
+	}
+
 	public BigDecimal getPricePerDayAdult() {
 		return pricePerDayAdult;
 	}

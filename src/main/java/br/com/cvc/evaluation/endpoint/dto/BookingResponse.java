@@ -1,5 +1,6 @@
 package br.com.cvc.evaluation.endpoint.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,6 +11,13 @@ public class BookingResponse {
 	private String cityName;
 
 	private List<Room> rooms;
+
+	public BookingResponse() {
+		super();
+		this.id = 0;
+		this.cityName = "";
+		this.rooms = new ArrayList<>();
+	}
 
 	public Integer getId() {
 		return id;
