@@ -1,16 +1,14 @@
 package br.com.cvc.evaluation.broker;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.cvc.evaluation.broker.dto.Hotel;
+import br.com.cvc.evaluation.broker.dto.BrokerHotel;
 
 @Service
 public class BrokerService {
@@ -24,22 +22,23 @@ public class BrokerService {
 	@Value("${broker.hotel.details.endpoint}")
 	private String hotelDetailsEndpoint;
 
-	public List<Hotel> findHotelsByCity(final Integer codeCity) {
-		ResponseEntity<List<Hotel>> response = this.restTemplate.exchange(
-				this.hotelsEndpoint.concat(codeCity.toString()), HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<Hotel>>() {
-				});
+	public List<BrokerHotel> findHotelsByCity(final Integer codeCity) {
+		BrokerHotel[] response = this.restTemplate.getForObject(this.hotelsEndpoint.concat(codeCity.toString()),
+				BrokerHotel[].class);
 
-		return response.getBody();
+		return Arrays.asList(response);
 	}
 
-	public Hotel getHotelDetails(final Integer codeHotel) {
-		ResponseEntity<Hotel> response = this.restTemplate.exchange(
-				this.hotelDetailsEndpoint.concat(codeHotel.toString()), HttpMethod.GET, null,
-				new ParameterizedTypeReference<Hotel>() {
-				});
+	public BrokerHotel getHotelDetails(final Integer codeHotel) {
+		BrokerHotel brokerHotel = new BrokerHotel();
+		BrokerHotel[] response = this.restTemplate.getForObject(this.hotelDetailsEndpoint.concat(codeHotel.toString()),
+				BrokerHotel[].class);
 
-		return response.getBody();
+		if (response.length > 0) {
+			brokerHotel = response[0];
+		}
+
+		return brokerHotel;
 	}
 
 }
