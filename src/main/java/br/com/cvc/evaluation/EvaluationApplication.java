@@ -8,7 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@ComponentScan(value = { "br.com.cvc.evaluation.endpoint", "br.com.cvc.evaluation.broker" })
+@ComponentScan(value = { "br.com.cvc.evaluation.endpoint", "br.com.cvc.evaluation.broker",
+		"br.com.cvc.evaluation.service" })
 public class EvaluationApplication {
 
 	public static void main(String[] args) {
