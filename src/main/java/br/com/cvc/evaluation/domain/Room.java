@@ -1,4 +1,4 @@
-package br.com.cvc.evaluation.endpoint.dto;
+package br.com.cvc.evaluation.domain;
 
 import java.math.BigDecimal;
 import java.util.Objects;

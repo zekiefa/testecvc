@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Room {
+public class BrokerHotelRoom {
 
 	private Integer roomID;
 
@@ -13,7 +13,7 @@ public class Room {
 
 	private Price price;
 
-	public Room() {
+	public BrokerHotelRoom() {
 		super();
 		this.roomID = 0;
 		this.categoryName = "";
@@ -57,7 +57,7 @@ public class Room {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Room other = (Room) obj;
+		BrokerHotelRoom other = (BrokerHotelRoom) obj;
 		return Objects.equals(categoryName, other.categoryName) && Objects.equals(price, other.price)
 				&& Objects.equals(roomID, other.roomID);
 	}

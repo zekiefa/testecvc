@@ -1,20 +1,23 @@
-package br.com.cvc.evaluation.endpoint.dto;
+package br.com.cvc.evaluation.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class BookingResponse {
+public class Hotel {
 
 	private Integer id;
 
 	private String cityName;
 
+	private String name;
+
 	private List<Room> rooms;
 
-	public BookingResponse() {
+	public Hotel() {
 		super();
 		this.id = 0;
+		this.name = "";
 		this.cityName = "";
 		this.rooms = new ArrayList<>();
 	}
@@ -25,6 +28,14 @@ public class BookingResponse {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCityName() {
@@ -45,7 +56,7 @@ public class BookingResponse {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cityName, id, rooms);
+		return Objects.hash(cityName, name, id, rooms);
 	}
 
 	@Override
@@ -56,9 +67,9 @@ public class BookingResponse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BookingResponse other = (BookingResponse) obj;
+		Hotel other = (Hotel) obj;
 		return Objects.equals(cityName, other.cityName) && Objects.equals(id, other.id)
-				&& Objects.equals(rooms, other.rooms);
+				&& Objects.deepEquals(name, other.name) && Objects.equals(rooms, other.rooms);
 	}
 
 	@Override
@@ -66,6 +77,8 @@ public class BookingResponse {
 		StringBuilder builder = new StringBuilder();
 		builder.append("BookingResponse [id=");
 		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
 		builder.append(", cityName=");
 		builder.append(cityName);
 		builder.append(", rooms=");
